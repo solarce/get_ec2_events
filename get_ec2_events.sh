@@ -18,7 +18,7 @@ else
   ACCOUNT="default"
 fi
 
-TIMESTAMP=$(date +"%Y%m%d_%k%M%S")
+TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
 EC2_REGIONS=$(aws ec2 describe-regions --region us-west-2 --output text | cut -f 3)
 
 echo "Getting instances for profile $ACCOUNT"
