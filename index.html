@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>get_ec2_events by solarce</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>get_ec2_events</h1>
+          <h2>A script to help you get a list of instances with specific events associated with them. Use for AWS:ReBoot events.</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/solarce/get_ec2_events/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/solarce/get_ec2_events/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/solarce/get_ec2_events" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h2>
+<a id="get_ec2_eventssh" class="anchor" href="#get_ec2_eventssh" aria-hidden="true"><span class="octicon octicon-link"></span></a>get_ec2_events.sh</h2>
+
+<p>aka <a href="https://twitter.com/solarce/status/571488994724356096"><em>ballin-nemisis</em></a></p>
+
+<h1>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements</h1>
+
+<ol>
+<li>You must have <a href="http://aws.amazon.com/cli/">awscli</a> installed, e.g. <code>pip install awscli --upgrade</code>
+</li>
+<li>You need to <a href="http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html">configure the awscli</a>, potentially with multiple profiles</li>
+</ol>
+
+<h1>
+<a id="description" class="anchor" href="#description" aria-hidden="true"><span class="octicon octicon-link"></span></a>Description</h1>
+
+<p>Uses the <code>awscli</code> tool to get a list of ec2 instances from a region and return a list of systems with one of the following event types:</p>
+
+<ul>
+<li>instance-reboot</li>
+<li>system-reboot</li>
+<li>system-maintenance</li>
+<li>instance-retirement</li>
+</ul>
+
+<h1>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h1>
+
+<p>Grab the <a href="https://github.com/solarce/get_ec2_events/releases">latest release</a> of the script and make it executable.</p>
+
+<p><code>chmod +x get_ec2_events.sh</code></p>
+
+<p>The script uses whatever credentials you've configured in <code>~/.aws/config</code> unless you pass it a <a href="http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-multiple-profiles">profile name</a>.</p>
+
+<p>Run the script like:</p>
+
+<pre><code>./get_ec2_events.sh PROFILE_NAME
+
+[bburton@althalus] ~/code/get_ec2_events_github &gt;&gt; ./get_ec2_events.sh solarce_aws
+Getting instances for profile solarce_aws
+Region: eu-central-1
+no running instances found
+Region: sa-east-1
+no running instances found
+Region: ap-northeast-1
+no running instances found
+Region: eu-west-1
+no running instances found
+Region: us-east-1
+found instances, getting status
+Instance_ID:i-XXXXXXXX,Instance_Name:git.repo,Instance_Status:EVENTS::system-reboot::Scheduled::reboot::2015-03-08T04:00:00.000Z::2015-03-07T23:00:00.000Z
+Instance_ID:i-XXXXXXXX,Instance_Name:keymaster,Instance_Status:EVENTS::system-reboot::Scheduled::reboot::2015-03-07T14:00:00.000Z::2015-03-07T09:00:00.000Z
+Region: us-west-1
+no running instances found
+Region: us-west-2
+no running instances found
+Region: ap-southeast-2
+no running instances found
+Region ap-southeast-1
+no running instances found
+</code></pre>
+
+<p>The script will also write the data to a <em>.csv</em> file, named like <code>solarce_aws_us-east-1_found_instances_20150227_180338.csv</code></p>
+
+<h1>
+<a id="authors" class="anchor" href="#authors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors</h1>
+
+<p>Created and maintained by <a href="https://github.com/solarce">Brandon Burton</a> (<a href="mailto:brandon@inatree.org">brandon@inatree.org</a>).</p>
+
+<h1>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h1>
+
+<p>Apache 2 licensed.
+See LICENSE for full details.</p>
+        </section>
+
+        <footer>
+          get_ec2_events is maintained by <a href="https://github.com/solarce">solarce</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
