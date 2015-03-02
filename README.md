@@ -28,6 +28,9 @@ Grab the [latest release](https://github.com/solarce/get_ec2_events/releases) of
 
 The script uses whatever credentials you've configured in `~/.aws/config` unless you pass it a [profile name](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-multiple-profiles).
 
+The script now filters Events that are `Completed` or `Canceled` by
+default. Add `--all` to have it print out all instances.
+
 Run the script like:
 
 ```

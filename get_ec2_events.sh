@@ -17,6 +17,13 @@ then
 else
   ACCOUNT="default"
 fi
+if [ -n "$2" ]
+then
+  if [[ $2 == "--all" ]]
+  then
+    EVENT_FILTER_COMPLETED="true"
+  fi
+fi
 
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
 EC2_REGIONS=$(aws ec2 describe-regions --region us-west-2 --output text | cut -f 3)
@@ -27,9 +34,17 @@ describe_instance_status() {
 
   instance=$1
   region=$2
-  aws ec2 describe-instance-status --profile $ACCOUNT --region $region --output text --instance-ids $instance \
-    --filters "Name=event.code,Values=instance-reboot,system-reboot,system-maintenance,instance-retirement" \
-   | grep EVENTS
+  # The default behavior is now to filter on Completed, unless you include --all
+  if [[ $EVENT_FILTER_COMPLETED == "true" ]]
+  then
+    aws ec2 describe-instance-status --profile $ACCOUNT --region $region --output text --instance-ids $instance \
+      --filters "Name=event.code,Values=instance-reboot,system-reboot,system-maintenance,instance-retirement" \
+      | grep EVENTS
+  else
+    aws ec2 describe-instance-status --profile $ACCOUNT --region $region --output text --instance-ids $instance \
+      --filters "Name=event.code,Values=instance-reboot,system-reboot,system-maintenance,instance-retirement" \
+      | grep EVENTS | grep -v -E 'Completed|Canceled'
+  fi
 }
 
 instance_name() {
