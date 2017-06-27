@@ -26,7 +26,7 @@ then
 fi
 
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
-EC2_REGIONS=$(aws --profile $ACCOUNT ec2 describe-regions --region us-west-2 --output text | cut -f 3)
+EC2_REGIONS="${EC2_REGIONS:-$(aws --profile $ACCOUNT ec2 describe-regions --region us-west-2 --output text | cut -f 3)}"
 
 echo "Getting instances for profile $ACCOUNT"
 

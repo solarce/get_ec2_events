@@ -62,6 +62,11 @@ no running instances found
 
 The script will also write the data to a *.csv* file, named like `solarce_aws_us-east-1_found_instances_20150227_180338.csv`
 
+To limit the regions the script searches, set the EC2_REGIONS environment variable:
+
+```
+EC2_REGIONS="us-west-2 us-east-1" ./get_ec2_events.sh PROFILE_NAME
+```
 
 Authors
 =======
